@@ -3,13 +3,24 @@ import { graphql } from 'react-apollo'
 import query from 'graphql/Users.gql'
 import { title } from './Welcome.scss'
 
-const Welcome = props => (
-  <div>
-    <h1 className={title}>Welcome!</h1>
-    <ul>
-      { console.log(props.data) }
-    </ul>
-  </div>
-)
+export class Welcome extends React.Component {
+  componentWillMount() {
+    // debugger
+  }
+  componentWillReceiveProps() {
+    // debugger
+  }
+  render() {
+    // debugger
+    return (
+      <div>
+        <h1 className={title}>Welcome!</h1>
+        <ul>
+          { console.log(this.props.data) }
+        </ul>
+      </div>
+    )
+  }
+}
 
 export default graphql(query)(Welcome)

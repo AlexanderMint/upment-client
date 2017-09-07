@@ -41,11 +41,14 @@
     "react/jsx-sort-props": ["error", { "callbacksLast": true }],
     "react/jsx-space-before-closing": ["off"],
     "react/forbid-prop-types": ["off"],
-    "react/prop-types": ["error", { "ignore": ["children"] }],
+    "react/prop-types": ["warn", { "ignore": ["children"] }],
     "jsx-a11y/no-noninteractive-element-handlers": ["off"],
     "jsx-a11y/no-noninteractive-element-interactions": ["off"],
     "jsx-a11y/no-static-element-interactions": ["off"],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["config/webpack/*.js"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["config/webpack/*.js"]}],
+    "react/prefer-stateless-function": ["off"],
+    "no-console": ["off"],
+    "no-debugger": ["off"]
   },
   "settings": {
     "import/resolver": {
