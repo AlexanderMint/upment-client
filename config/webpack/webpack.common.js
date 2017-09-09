@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports = {
   entry: {
-    main: 'index',
+    main: 'client',
     vendor: [
       'history',
       'immutable',
@@ -25,10 +25,11 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: ['node_modules', 'src'],
+    modules: ['node_modules', 'src', 'services', 'components'],
     extensions: [
       '.js',
-      '.jsx'
+      '.jsx',
+      '.graphql'
     ]
   },
   output: {

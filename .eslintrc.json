@@ -50,7 +50,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src", "src/components"]
+        "paths": ["src", "src/services", "src/components"]
       }
     }
   }

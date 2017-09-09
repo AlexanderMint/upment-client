@@ -1,14 +1,11 @@
 import React from 'react'
 import { graphql } from 'react-apollo'
-import query from 'graphql/Users.gql'
-import { title } from './Welcome.scss'
+import query from './services/graphql/Users.graphql'
+import { title } from './styles.scss'
 
-const Welcome = props => (
+const Welcome = () => (
   <div>
     <h1 className={title}>Welcome!</h1>
-    <ul>
-      { console.log(props.data) }
-    </ul>
   </div>
 )
 

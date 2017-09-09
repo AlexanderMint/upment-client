@@ -1,11 +1,10 @@
 import React from 'react'
 
-// Shared
-import Menu from 'shared/components/menu'
+import Navigation from 'layouts/components/Navigation'
 
 export default props => (
   <div>
-    <Menu />
+    <Navigation />
     {props.children}
   </div>
 )

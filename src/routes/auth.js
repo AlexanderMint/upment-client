@@ -1,13 +1,18 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
 
-// APPS
-import Authorization from 'components/auth/Authorization'
-import Registration from 'components/auth/Registration'
+// Layout
+import Layout from 'layouts/Auth'
+
+// Scenes
+import Authorization from 'scenes/Sign/Authorization'
+import Registration from 'scenes/Sign/Registration'
+
+// Utils
+import RouteWithLayout from './utils/RouteWithLayout'
 
 export default () => (
-  <Switch>
-    <Route component={Authorization} exact path="/sign_in" />
-    <Route component={Registration} exact path="/sign_up" />
-  </Switch>
+  <div>
+    <RouteWithLayout component={Authorization} exact layout={Layout} path="/sign_in" />
+    <RouteWithLayout component={Registration} exact layout={Layout} path="/sign_up" />
+  </div>
 )

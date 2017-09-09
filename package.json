@@ -7,7 +7,7 @@
     "build": "webpack --env=dev --progress --colors",
     "build:prod": "webpack --env=prod --optimize-minimize --progress --colors",
     "start": "webpack-dev-server --env=dev --hot --inline --progress --colors --content-base ./dist --allowed-hosts up.com,up.ru",
-    "lint": "eslint --fix --ext .jsx,.js,.graphql,.gql .",
+    "lint": "eslint --fix --ext .jsx,.js .",
     "webpack:modules": "webpack --env=dev --display-modules --profile"
   },
   "dependencies": {
