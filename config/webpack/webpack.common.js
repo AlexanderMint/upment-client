@@ -17,6 +17,7 @@ module.exports = {
       'react-router',
       'react-router-dom',
       'react-router-redux',
+      'prop-types',
       'redux',
       'redux-thunk',
       'redux-immutable',

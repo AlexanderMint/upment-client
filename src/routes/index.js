@@ -1,11 +1,13 @@
 import React from 'react'
 
+import GlobalLayout from 'layouts/Global'
+
 import Auth from './auth'
 import Public from './public'
 
 export default () => (
-  <div>
+  <GlobalLayout>
     <Auth />
     <Public />
-  </div>
+  </GlobalLayout>
 )
