@@ -24,10 +24,7 @@ module.exports = Merge(CommonConfig, {
     }),
     new UglifyJSPlugin({
       beautify: false,
-      comments: false,
-      compress: {
-        warnings: false
-      }
+      comments: false
     })
   ]
 })
