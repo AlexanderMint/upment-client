@@ -19,12 +19,15 @@ const Users = ({ data }) => {
 
 Users.propTypes = {
   data: PropTypes.shape({
-    users: {
-      id: PropTypes.number,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string
-    },
-    loading: PropTypes.bool
+    users: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string
+      })
+    ),
+    loading: PropTypes.bool,
+    error: PropTypes.bool
   }).isRequired
 }
 

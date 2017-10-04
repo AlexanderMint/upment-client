@@ -13,10 +13,7 @@ const Welcome = props => (
 )
 
 Welcome.propTypes = {
-  data: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
-    users: PropTypes.array
-  }).isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default graphql(query)(Welcome)
