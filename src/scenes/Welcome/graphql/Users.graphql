@@ -1,7 +1,8 @@
 {
-  users {
+  users(order: desc) {
     id
     firstName
     lastName
+    email
   }
 }

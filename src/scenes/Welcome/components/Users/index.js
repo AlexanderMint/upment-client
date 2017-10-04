@@ -1,10 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const propTypes = {
-  first_name: ''
-}
-
 const Users = ({ data }) => {
   if (data.loading) {
     return <p>Loading...</p>
@@ -14,8 +10,8 @@ const Users = ({ data }) => {
 
   return (
     <ul>
-      {data.users.map(({ id, firstName, lastName }) => (
-        <li key={id}>{firstName} {lastName}</li>
+      {data.users.map(({ id, firstName, lastName, email }) => (
+        <li key={id}><b>{id}</b>: {firstName} {lastName} <small>{email}</small></li>
       ))}
     </ul>
   )
@@ -23,9 +19,12 @@ const Users = ({ data }) => {
 
 Users.propTypes = {
   data: PropTypes.shape({
-    firstName: PropTypes.string,
-    id: PropTypes.number,
-    lastName: PropTypes.string
+    users: {
+      id: PropTypes.number,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string
+    },
+    loading: PropTypes.bool
   }).isRequired
 }
 
