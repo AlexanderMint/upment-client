@@ -22,7 +22,8 @@ module.exports = {
       'redux-thunk',
       'redux-immutable',
       'react-apollo',
-      'normalize.css'
+      'purecss',
+      'classnames'
     ]
   },
   resolve: {

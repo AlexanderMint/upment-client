@@ -11,11 +11,12 @@
     "webpack:modules": "webpack --env=dev --display-modules --profile"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "history": "^4.7.2",
     "immutable": "^3.8.1",
-    "normalize.css": "^7.0.0",
     "path": "^0.12.7",
     "prop-types": "^15.5.10",
+    "purecss": "^1.0.0",
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
