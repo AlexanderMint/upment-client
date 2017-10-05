@@ -17,7 +17,7 @@ const Routes = ({ history }) => (
 )
 
 Routes.propTypes = {
-  history: PropTypes.func.isRequired
+  history: PropTypes.object.isRequired
 }
 
 export default Routes
