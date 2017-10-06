@@ -1,22 +1,38 @@
 import React from 'react'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
+import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo'
 
-// Redux
-// import { createStore, applyMiddleware } from 'redux'
-// import { Provider } from 'react-redux'
-
-// Redux Router
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import { routerMiddleware, routerReducer, ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
-// import reducers from './reducers'
 
-const history = createHistory()
-// const middleware = routerMiddleware(history)
-// export const store = createStore(reducers, applyMiddleware(middleware))
+import { NETWORK_INTERFACE } from 'config'
 
-export default props => {
-  return (
+export const networkInterface = createNetworkInterface({ uri: NETWORK_INTERFACE })
+
+export const history = createHistory()
+export const client = new ApolloClient({ networkInterface })
+
+export const store = initialState => createStore(
+  combineReducers({
+    router: routerReducer,
+    apollo: client.reducer()
+  }), initialState,
+  composeWithDevTools(
+    applyMiddleware(
+      routerMiddleware(history),
+      client.middleware()
+    ),
+  )
+)
+
+export const router = props => (
+  <ApolloProvider client={client} store={store()} >
     <ConnectedRouter history={history}>
       {props.children}
     </ConnectedRouter>
-  )
-}
+  </ApolloProvider>
+)
+
+
+export default router

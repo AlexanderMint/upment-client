@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --env=dev --progress --colors",
     "build:prod": "webpack --env=prod --optimize-minimize --progress --colors",
-    "start": "webpack-dev-server --env=dev --hot --inline --progress --colors --content-base ./dist --allowed-hosts up.com,up.ru",
+    "start": "webpack-dev-server --env=dev --hot --inline --progress --colors --content-base ./dist --allowed-hosts up.com,up.ru,lvh.me",
     "lint": "eslint --fix --ext .jsx,.js .",
     "webpack:modules": "webpack --env=dev --display-modules --profile"
   },
@@ -25,6 +25,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },

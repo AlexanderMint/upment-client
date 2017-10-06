@@ -14,7 +14,7 @@ export const store = createStore(
   combineReducers({
     router: routerReducer,
     apollo: client.reducer()
-  }),undefined,
+  }), undefined,
   compose(
     applyMiddleware(
       middleware,
