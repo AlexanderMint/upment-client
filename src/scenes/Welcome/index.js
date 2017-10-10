@@ -9,7 +9,7 @@ import Users from './components/Users'
 
 export class Welcome extends Component {
   componentWillMount() {
-    console.log(this.props)
+    console.log(this.props, this.props.replace('asdfasdfads'))
   }
   render() {
     return (
@@ -36,7 +36,6 @@ export default graphql(query)(connect(
   state => ({
     state
   }), dispatch => ({
-    replace: dispatch(replace('/replace')),
-    push: dispatch(push('/push'))
+    replace: url => dispatch(replace(url))
   })
 )(Welcome))

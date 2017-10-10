@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo'
 
@@ -18,7 +18,7 @@ export const store = initialState => createStore(
     router: routerReducer,
     apollo: client.reducer()
   }), initialState,
-  composeWithDevTools(
+  compose(
     applyMiddleware(
       routerMiddleware(history),
       client.middleware()
