@@ -7,6 +7,7 @@ import reducers from './reducers'
 
 export default class Store {
   constructor(history, initialState = {}) {
+    console.log(NODE_ENV)
     const compositor = process.env.NODE_ENV === 'production' ? compose : composeWithDevTools
     this.data = createStore(
       reducers,

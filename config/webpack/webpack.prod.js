@@ -1,4 +1,5 @@
 const Merge = require('webpack-merge')
+const webpack = require('webpack')
 const CommonConfig = require('./webpack.common.js')
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
@@ -25,6 +26,9 @@ module.exports = Merge(CommonConfig, {
     new UglifyJSPlugin({
       beautify: false,
       comments: false
+    }),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'production')
     })
   ]
 })

@@ -1,4 +1,5 @@
 const Merge = require('webpack-merge')
+const webpack = require('webpack')
 const CommonConfig = require('./webpack.common.js')
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -13,6 +14,9 @@ module.exports = Merge(CommonConfig, {
     new ExtractTextPlugin({
       allChunks: true,
       filename: 'stylesheets/[name].css'
+    }),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
     })
   ]
 })
