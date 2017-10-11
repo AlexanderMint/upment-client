@@ -3,6 +3,7 @@ import { graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import purecss from 'purecss'
+import { setCookie } from 'services/cookies'
 import query from './graphql/SignUp.graphql'
 
 export class SignUpForm extends React.Component {
@@ -24,8 +25,11 @@ export class SignUpForm extends React.Component {
     this.props.mutate({
       variables: this.state
     })
-      .then((data) => {
-        console.log(data)
+      .then(({ data }) => {
+        const { accessToken, refreshToken } = data.signUp
+
+        setCookie('access_token', accessToken)
+        setCookie('refresh_token', refreshToken)
       }).catch((error) => {
         console.log('there was an error sending the query', error)
       })

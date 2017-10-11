@@ -23,7 +23,8 @@ module.exports = {
       'redux-immutable',
       'react-apollo',
       'purecss',
-      'classnames'
+      'classnames',
+      'universal-cookie'
     ]
   },
   resolve: {

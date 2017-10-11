@@ -27,7 +27,8 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-immutable": "^4.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "universal-cookie": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
