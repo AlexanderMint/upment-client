@@ -1,10 +1,13 @@
 import React from 'react'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import purecss from 'purecss'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { setCookie } from 'services/cookies'
 import query from './graphql/SignUp.graphql'
+
 
 export class SignUpForm extends React.Component {
   state = {
@@ -30,8 +33,10 @@ export class SignUpForm extends React.Component {
 
         setCookie('access_token', accessToken)
         setCookie('refresh_token', refreshToken)
+
+        this.props.redirect()
       }).catch((error) => {
-        console.log('there was an error sending the query', error)
+        alert('there was an error sending the query', error)
       })
   }
 
@@ -74,7 +79,16 @@ export class SignUpForm extends React.Component {
 }
 
 SignUpForm.propTypes = {
-  mutate: PropTypes.func.isRequired
+  mutate: PropTypes.func.isRequired,
+  redirect: PropTypes.func.isRequired
 }
 
-export default graphql(query)(SignUpForm)
+const mapStateToProps = () => ({})
+const mapDispatchToProps = dispatch => ({
+  redirect: () => dispatch(push('/'))
+})
+
+export default compose(
+  graphql(query),
+  connect(mapStateToProps, mapDispatchToProps)
+)(SignUpForm)
