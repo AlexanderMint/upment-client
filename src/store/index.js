@@ -16,7 +16,7 @@ export default class Store {
           routerMiddleware(history),
           ApolloClient.middleware(),
           ReduxThunk.withExtraArgument(ApolloClient)
-        ),
+        )
       )
     )
   }

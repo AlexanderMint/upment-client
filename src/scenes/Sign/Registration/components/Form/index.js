@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import purecss from 'purecss'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-import { setCookie } from 'services/cookies'
+import { authorization } from './actions'
 import query from './graphql/SignUp.graphql'
 
 
@@ -29,12 +28,7 @@ export class SignUpForm extends React.Component {
       variables: this.state
     })
       .then(({ data }) => {
-        const { accessToken, refreshToken } = data.signUp
-
-        setCookie('access_token', accessToken)
-        setCookie('refresh_token', refreshToken)
-
-        this.props.redirect()
+        this.props.authorization(data.signUp)
       }).catch((error) => {
         alert('there was an error sending the query', error)
       })
@@ -80,13 +74,11 @@ export class SignUpForm extends React.Component {
 
 SignUpForm.propTypes = {
   mutate: PropTypes.func.isRequired,
-  redirect: PropTypes.func.isRequired
+  authorization: PropTypes.func.isRequired
 }
 
 const mapStateToProps = () => ({})
-const mapDispatchToProps = dispatch => ({
-  redirect: () => dispatch(push('/'))
-})
+const mapDispatchToProps = { authorization }
 
 export default compose(
   graphql(query),
