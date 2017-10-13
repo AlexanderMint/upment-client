@@ -5,10 +5,10 @@ import classNames from 'classnames'
 import purecss from 'purecss'
 import { connect } from 'react-redux'
 import { updateTokenAndRedirect } from '../../../actions/update_token_and_redirect'
-import query from './graphql/SignUp.graphql'
+import query from './graphql/SignIn.graphql'
 
 
-export class SignUpForm extends React.Component {
+export class SignInForm extends React.Component {
   state = {
     email: '',
     password: ''
@@ -28,7 +28,7 @@ export class SignUpForm extends React.Component {
       variables: this.state
     })
       .then(({ data }) => {
-        this.props.updateTokenAndRedirect(data.signUp)
+        this.props.updateTokenAndRedirect(data.signIn)
       }).catch((error) => {
         alert('there was an error sending the query', error)
       })
@@ -61,9 +61,6 @@ export class SignUpForm extends React.Component {
             />
           </div>
           <div className={purecss['pure-controls']}>
-            <label className={purecss['pure-checkbox']} htmlFor="terms">
-              <input id="terms" name="terms" type="checkbox" /> I have read the terms and conditions
-            </label>
             <input className={classNames(purecss['pure-button'], purecss['pure-button-primary'])} type="submit" value="Submit" />
           </div>
         </fieldset>
@@ -72,7 +69,7 @@ export class SignUpForm extends React.Component {
   }
 }
 
-SignUpForm.propTypes = {
+SignInForm.propTypes = {
   mutate: PropTypes.func.isRequired,
   updateTokenAndRedirect: PropTypes.func.isRequired
 }
@@ -83,4 +80,4 @@ const mapDispatchToProps = { updateTokenAndRedirect }
 export default compose(
   graphql(query),
   connect(mapStateToProps, mapDispatchToProps)
-)(SignUpForm)
+)(SignInForm)
