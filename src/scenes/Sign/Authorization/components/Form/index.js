@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import purecss from 'purecss'
 import { connect } from 'react-redux'
-import { updateTokenAndRedirect } from '../../../actions/update_token_and_redirect'
 import query from './graphql/SignIn.graphql'
 
 

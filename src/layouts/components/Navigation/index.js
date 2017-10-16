@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import classNames from 'classnames'
 import purecss from 'purecss'
 import { spanCss } from './styles.scss'
-import { signOut } from './actions'
 
 class Navigation extends React.Component {
   haveTokens = () => {
@@ -50,8 +49,8 @@ const mapStateToProps = state => ({
   accessToken: state.tokens.accessToken,
   refreshToken: state.tokens.refreshToken
 })
-const mapDispatchToProps = dispatch => ({
-  signOut: () => signOut(dispatch)
-})
+const mapDispatchToProps = {
+  signOut: () => ({ type: 'CLEAR_TOKEN' })
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

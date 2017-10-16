@@ -8,11 +8,11 @@ import Navigation from 'layouts/components/Navigation'
 import Loading from 'Loading'
 import Notifications from 'Notifications'
 
-import { updateToken } from 'store/actions/token_actions'
+import { setToken } from 'store/actions/token_actions'
 
 class App extends React.Component {
   componentWillMount() {
-    this.props.updateToken()
+    this.props.setToken()
   }
 
   render() {
@@ -28,7 +28,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  updateToken: PropTypes.func.isRequired
+  setToken: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
   refreshToken: state.tokens.refreshToken
 })
 
-const mapDispatchToProps = { updateToken }
+const mapDispatchToProps = { setToken }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 
