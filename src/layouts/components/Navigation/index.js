@@ -4,13 +4,22 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import purecss from 'purecss'
+import { clearTokens } from 'store/actions/token_actions'
+import { logoutUser } from 'store/actions/user_actions'
+import { redirectTo } from 'store/actions/redirect_actions'
+
 import { spanCss } from './styles.scss'
-import { signOut } from './actions'
 
 class Navigation extends React.Component {
   haveTokens = () => {
     const { refreshToken, accessToken } = this.props
     return !!refreshToken && !!accessToken
+  }
+
+  signOut = () => {
+    this.props.logoutUser()
+    this.props.clearTokens()
+    this.props.redirectTo('/')
   }
 
   render() {
@@ -27,7 +36,10 @@ class Navigation extends React.Component {
             <Link className={purecss['pure-menu-link']} to="/sign_up">Sign up</Link>
           </li> }
           { this.haveTokens() && <li className={purecss['pure-menu-item']}>
-            <span className={classNames(purecss['pure-menu-link'], spanCss)} onClick={this.props.signOut}>Sign Out</span>
+            <Link className={classNames(purecss['pure-menu-link'], spanCss)} to="/profile">Profile</Link>
+          </li> }
+          { this.haveTokens() && <li className={purecss['pure-menu-item']}>
+            <span className={classNames(purecss['pure-menu-link'], spanCss)} onClick={this.signOut}>Sign Out</span>
           </li> }
         </ul>
       </div>
@@ -38,7 +50,9 @@ class Navigation extends React.Component {
 Navigation.propTypes = {
   accessToken: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   refreshToken: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  signOut: PropTypes.func.isRequired
+  clearTokens: PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  redirectTo: PropTypes.func.isRequired
 }
 
 Navigation.defaultProps = {
@@ -50,8 +64,6 @@ const mapStateToProps = state => ({
   accessToken: state.tokens.accessToken,
   refreshToken: state.tokens.refreshToken
 })
-const mapDispatchToProps = dispatch => ({
-  signOut: () => signOut(dispatch)
-})
+const mapDispatchToProps = { clearTokens, logoutUser, redirectTo }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

@@ -3,6 +3,7 @@ mutation SignUp($email: String!, $password: String!) {
     id
     firstName
     lastName
+    email
     refreshToken
     accessToken
   }

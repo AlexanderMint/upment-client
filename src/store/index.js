@@ -1,11 +1,12 @@
 import { createStore, compose, applyMiddleware } from 'redux'
+import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import ReduxThunk from 'redux-thunk'
 import ApolloClient from 'network/apollo-client'
 import reducers from './reducers'
 
-export default class Store {
+class Store {
   constructor(history, initialState = {}) {
     const compositor = process.env.NODE_ENV === 'production' ? compose : composeWithDevTools
     this.data = createStore(
@@ -21,3 +22,10 @@ export default class Store {
     )
   }
 }
+
+
+export const history = createHistory()
+export const store = new Store(history).data
+export default () => store
+
+window.store = store

@@ -4,11 +4,12 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import purecss from 'purecss'
 import { connect } from 'react-redux'
-import { updateTokenAndRedirect } from '../../../actions/update_token_and_redirect'
-import query from './graphql/SignUp.graphql'
+import { setUser } from 'store/actions/user_actions'
+import { updateToken } from 'store/actions/token_actions'
+import { redirectTo } from 'store/actions/redirect_actions'
+import query from './query.graphql'
 
-
-export class SignUpForm extends React.Component {
+class SignUpForm extends React.Component {
   state = {
     email: '',
     password: ''
@@ -28,7 +29,9 @@ export class SignUpForm extends React.Component {
       variables: this.state
     })
       .then(({ data }) => {
-        this.props.updateTokenAndRedirect(data.signUp)
+        this.props.setUser(data.signUp)
+        this.props.updateToken(data.signUp)
+        this.props.redirectTo('/')
       }).catch((error) => {
         alert('there was an error sending the query', error)
       })
@@ -74,11 +77,13 @@ export class SignUpForm extends React.Component {
 
 SignUpForm.propTypes = {
   mutate: PropTypes.func.isRequired,
-  updateTokenAndRedirect: PropTypes.func.isRequired
+  setUser: PropTypes.func.isRequired,
+  updateToken: PropTypes.func.isRequired,
+  redirectTo: PropTypes.func.isRequired
 }
 
 const mapStateToProps = () => ({})
-const mapDispatchToProps = { updateTokenAndRedirect }
+const mapDispatchToProps = { setUser, updateToken, redirectTo }
 
 export default compose(
   graphql(query),

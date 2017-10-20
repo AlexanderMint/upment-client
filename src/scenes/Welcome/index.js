@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import query from './graphql/Users.graphql'
+import query from './query.graphql'
 import { title } from './styles.scss'
 import Users from './components/Users'
 

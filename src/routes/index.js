@@ -6,12 +6,14 @@ import LayoutApp from 'layouts/App'
 
 import Auth from './auth'
 import Public from './public'
+import User from './user'
 
 const Routes = ({ history }) => (
   <ConnectedRouter history={history}>
     <LayoutApp>
       <Auth />
       <Public />
+      <User />
     </LayoutApp>
   </ConnectedRouter>
 )
