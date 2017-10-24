@@ -1,0 +1,8 @@
+mutation updateUser($id: Int!, $firstName: String!, $lastName: String!) {
+  updateUser(id: $id, firstName: $firstName, lastName: $lastName) {
+    id
+    firstName
+    lastName
+    email
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { graphql } from 'react-apollo'
+import { Link } from 'react-router-dom'
 import query from './query.graphql'
 
 class Profile extends React.Component {
@@ -17,6 +18,8 @@ class Profile extends React.Component {
         <p><b>First name: </b> {this.current_user.firstName}</p>
         <p><b>Last name: </b> {this.current_user.lastName}</p>
         <p><b>Email: </b> {this.current_user.email}</p>
+        <br />
+        <Link to="profile/edit">Edit</Link>
       </div>
     )
   }
