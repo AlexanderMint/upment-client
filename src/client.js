@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
 import Routes from './routes'
 import { store, history } from './store'
-import ApolloClient from './network/apollo-client'
+import ApolloClient from './services/graphql/apollo-client'
 
 // Root
 const div = document.createElement('div')

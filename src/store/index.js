@@ -3,7 +3,7 @@ import createHistory from 'history/createBrowserHistory'
 import { routerMiddleware } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import ReduxThunk from 'redux-thunk'
-import ApolloClient from 'network/apollo-client'
+import ApolloClient from 'services/graphql/apollo-client'
 import reducers from './reducers'
 
 class Store {

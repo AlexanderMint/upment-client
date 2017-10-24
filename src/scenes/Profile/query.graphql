@@ -1,8 +1,8 @@
 query currentUser{
-    currentUser{
-        id
-        firstName
-        lastName
-        email
-    }
+  currentUser{
+    id
+    firstName
+    lastName
+    email
+  }
 }
