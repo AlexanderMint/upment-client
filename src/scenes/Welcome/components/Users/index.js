@@ -21,7 +21,7 @@ Users.propTypes = {
   data: PropTypes.shape({
     users: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string,
+        id: PropTypes.integer,
         firstName: PropTypes.string,
         lastName: PropTypes.string
       })
