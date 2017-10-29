@@ -6,6 +6,7 @@ query currentUser{
     email
     refreshTokens{
       id
+      name
       token
       createdAt
     }

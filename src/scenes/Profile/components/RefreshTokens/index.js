@@ -36,15 +36,17 @@ class RefreshTokens extends React.Component {
           <thead>
             <tr>
               <th>#</th>
+              <th>Name</th>
               <th>Token</th>
               <th>Created at</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {this.tokens.map(({ id, token, createdAt }) => (
+            {this.tokens.map(({ id, name, token, createdAt }) => (
               <tr className={purecss['pure-table-odd']} key={id}>
                 <td>{id}</td>
+                <td>{name}</td>
                 <td>{token}</td>
                 <td>({createdAt})</td>
                 <td>
