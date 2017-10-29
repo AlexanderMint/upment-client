@@ -1,0 +1,5 @@
+mutation destroyRefreshToken($id: Int!) {
+  destroyRefreshToken(id: $id) {
+    id
+  }
+}

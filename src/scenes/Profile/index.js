@@ -31,7 +31,7 @@ class Profile extends React.Component {
         <br />
         <Link to="profile/edit">Edit</Link>
         <hr />
-        <RefreshTokens tokens={this.data.currentUser.refreshTokens} />
+        <RefreshTokens data={this.data} />
       </div>
     )
   }
@@ -55,4 +55,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {}
 
-export default connect(mapStateToProps, mapDispatchToProps)(graphql(query)(Profile))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  graphql(query, {
+    options: {
+      fetchPolicy: 'network-only'
+    }
+  })(Profile)
+)

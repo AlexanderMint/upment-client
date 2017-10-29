@@ -1,25 +1,82 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import purecss from 'purecss'
+import { graphql } from 'react-apollo'
+import query from './destroyRefreshToken.graphql'
 
-const RefreshTokens = ({ tokens }) => (
-  <div>
-    <h3>Sessions:</h3>
-    <ul>
-      {tokens.map(({ id, token, createdAt }) => (
-        <li key={id}><b>{id}</b>: {token} <small>{createdAt}</small></li>
-      ))}
-    </ul>
-  </div>
-)
+class RefreshTokens extends React.Component {
+  componentWillMount() {
+    this.tokens = this.props.data.currentUser.refreshTokens
+  }
 
-RefreshTokens.propTypes = {
-  tokens: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.integer,
-      token: PropTypes.string,
-      createdAt: PropTypes.string
+  componentWillReceiveProps(nextProps) {
+    this.tokens = nextProps.data.currentUser.refreshTokens
+  }
+
+  onRefreshClicked = () => {
+    this.props.data.refetch()
+  }
+
+  destroyToken = (id) => {
+    this.props.mutate({
+      variables: { id }
     })
-  ).isRequired
+      .then(() => {
+        this.props.data.refetch()
+      }).catch((error) => {
+        alert('there was an error sending the query', error)
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        <h3>Sessions:</h3>
+        <table className={purecss['pure-table']}>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Token</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.tokens.map(({ id, token, createdAt }) => (
+              <tr className={purecss['pure-table-odd']} key={id}>
+                <td>{id}</td>
+                <td>{token}</td>
+                <td>({createdAt})</td>
+                <td>
+                  <button
+                    className={purecss['pure-button']}
+                    onClick={() => this.destroyToken(id)}
+                  > Destroy</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p><button className={purecss['pure-button']} onClick={this.onRefreshClicked}>Refresh</button></p>
+      </div>
+    )
+  }
 }
 
-export default RefreshTokens
+RefreshTokens.propTypes = {
+  mutate: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    refetch: PropTypes.func.isRequired,
+    currentUser: PropTypes.shape({
+      refreshTokens: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.integer,
+          token: PropTypes.string,
+          createdAt: PropTypes.string
+        })
+      )
+    })
+  }).isRequired
+}
+
+export default graphql(query)(RefreshTokens)
