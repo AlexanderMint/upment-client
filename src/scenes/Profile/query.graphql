@@ -6,7 +6,10 @@ query currentUser{
     email
     refreshTokens{
       id
-      name
+      browserName
+      deviceName
+      osName
+      userAgent
       token
       createdAt
     }

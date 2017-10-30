@@ -36,17 +36,23 @@ class RefreshTokens extends React.Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
+              <th>Browser</th>
+              <th>Device</th>
+              <th>OS</th>
+              <th>User Agent</th>
               <th>Token</th>
               <th>Created at</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {this.tokens.map(({ id, name, token, createdAt }) => (
+            {this.tokens.map(({ id, browserName, deviceName, osName, userAgent, token, createdAt }) => (
               <tr className={purecss['pure-table-odd']} key={id}>
                 <td>{id}</td>
-                <td>{name}</td>
+                <td>{browserName}</td>
+                <td>{deviceName}</td>
+                <td>{osName}</td>
+                <td>{userAgent}</td>
                 <td>{token}</td>
                 <td>({createdAt})</td>
                 <td>
@@ -73,6 +79,10 @@ RefreshTokens.propTypes = {
       refreshTokens: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.integer,
+          browserName: PropTypes.string,
+          deviceName: PropTypes.string,
+          osName: PropTypes.string,
+          userAgent: PropTypes.string,
           token: PropTypes.string,
           createdAt: PropTypes.string
         })
