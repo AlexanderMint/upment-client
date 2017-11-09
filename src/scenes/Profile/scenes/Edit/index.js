@@ -32,7 +32,7 @@ class ProfileEdit extends React.Component {
         this.props.setUser(data.updateUser)
         this.props.redirectTo('/profile')
       }).catch((error) => {
-        alert('there was an error sending the query', error)
+        console.log('there was an error sending the query', error)
       })
   }
 
